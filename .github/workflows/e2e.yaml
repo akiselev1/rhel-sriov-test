@@ -3,10 +3,23 @@ run-name: sriov-e2e-test initiated by ${{ github.actor }}
 on:
   pull_request:
     types: [labeled]
+    inputs:
+      nic_series:
+        description: 'NIC hardware'
+        default: '810'
   workflow_dispatch:
+    inputs:
+      nic_series:
+        description: 'NIC hardware'
+        required: true
+        default: '810'
+        type: choice
+        options:
+        - 810
+        - 710
 jobs:
   e2e-tests:
-    runs-on: self-hosted
+    runs-on: [self-hosted, ${{ inputs.nic_series }}]
     if: contains(github.event.label.name, 'e2e-test')
     steps:
       - uses: actions/checkout@v3
