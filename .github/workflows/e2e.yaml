@@ -19,7 +19,7 @@ on:
         - 710
 jobs:
   e2e-tests:
-    runs-on: [self-hosted, ${{ inputs.nic_series }}]
+    runs-on: [self-hosted, $NIC]
     if: contains(github.event.label.name, 'e2e-test')
     steps:
       - uses: actions/checkout@v3
@@ -78,6 +78,8 @@ jobs:
           retention-days: 3
       - name: Display Status
         run: echo "This job's status is ${{ job.status }}."
+    env:
+      NIC: ${{ inputs.nic_series }}
   remove-label:
     needs: e2e-tests
     permissions:
