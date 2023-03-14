@@ -3,23 +3,10 @@ run-name: sriov-e2e-test initiated by ${{ github.actor }}
 on:
   pull_request:
     types: [labeled]
-    inputs:
-      tag:
-        description: 'NIC hardware'
-        default: '810'
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'NIC hardware'
-        required: true
-        default: '810'
-        type: choice
-        options:
-        - 810
-        - 710
 jobs:
   e2e-tests:
-    runs-on: self-hosted ${{ github.event.inputs.tag }}
+    runs-on: [self-hosted, 810]
     if: |
       ${{ contains(github.event.label.name, 'e2e-test') ||
         github.event_name == 'workflow_dispatch' }}
@@ -80,8 +67,6 @@ jobs:
           retention-days: 3
       - name: Display Status
         run: echo "This job's status is ${{ job.status }}."
-    env:
-      NIC: ${{ inputs.nic_series }}
   remove-label:
     needs: e2e-tests
     permissions:
