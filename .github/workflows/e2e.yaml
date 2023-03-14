@@ -19,9 +19,7 @@ on:
         - 710
 jobs:
   e2e-tests:
-    runs-on: 
-      group: self-hosted
-      labels: 810
+    runs-on: [self-hosted, 810]
     if: contains(github.event.label.name, 'e2e-test')
     steps:
       - uses: actions/checkout@v3
