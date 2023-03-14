@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f sriov/requirements.txt ]; then pip install -r sriov/requirements.txt; fi
           pip install mock
-      - name: e2e test
+      - name: e2e test 710
         working-directory: ${{ github.workspace }}
         run: |
           files=`git diff --name-only origin/main`

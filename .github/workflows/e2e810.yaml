@@ -1,11 +1,11 @@
-name: sriov-e2e-test
-run-name: sriov-e2e-test initiated by ${{ github.actor }}
+name: sriov-e2e-test-819
+run-name: sriov-e2e-test-810 initiated by ${{ github.actor }}
 on:
   pull_request:
     types: [labeled]
   workflow_dispatch:
 jobs:
-  e2e-tests:
+  e2e-tests-810:
     if: |
       ${{ github.event.label.name == 'e2e-test' ||
         github.event_name == 'workflow_dispatch' }}
@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f sriov/requirements.txt ]; then pip install -r sriov/requirements.txt; fi
           pip install mock
-      - name: e2e test
+      - name: e2e test 810
         working-directory: ${{ github.workspace }}
         run: |
           files=`git diff --name-only origin/main`
