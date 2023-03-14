@@ -14,7 +14,7 @@ ip link set ${PF_1} vf 0 trust on
 ip link set ${PF_2} vf 0 trust on
 ip link set ${PF_1}v0 down
 ip link set ${PF_2}v0 down
-```
+``` 
 
 * On DUT, form a bond interface across the 2 VFs with the following permutations,
 
