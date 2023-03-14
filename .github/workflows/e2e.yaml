@@ -19,7 +19,10 @@ on:
         - 710
 jobs:
   e2e-tests:
-    runs-on: [self-hosted, $NIC]
+    if: contains(inputs.nic_series, 800)
+    runs-on: [self-hosted, 800]
+    if: contains(inputs.nic_series, 700)
+    runs-on: [self-hosted, 700]
     if: contains(github.event.label.name, 'e2e-test')
     steps:
       - uses: actions/checkout@v3
