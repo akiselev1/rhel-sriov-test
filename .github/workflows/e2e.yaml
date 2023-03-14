@@ -21,7 +21,7 @@ jobs:
   e2e-tests:
     runs-on: 
       group: self-hosted
-      label: ${{ inputs.nic_series }}
+      labels: ${{ inputs.nic_series }}
     if: contains(github.event.label.name, 'e2e-test')
     steps:
       - uses: actions/checkout@v3
@@ -57,7 +57,7 @@ jobs:
           cd sriov/tests
           cp /config/*.yaml ./
           if [[ "${mode}" == "full" ]]; then
-            pytest -v --html=report.html --self-contained-html SR_IOV_* common
+            pytest -v --html=report.html --self-contained-html common
             echo "generated=true" >> $GITHUB_ENV
           elif [[ ${#tests[@]} -ne 0 ]]; then
             test_string="pytest -v --html=report.html --self-contained-html"
