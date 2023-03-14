@@ -19,7 +19,7 @@ on:
         - 710
 jobs:
   e2e-tests:
-    runs-on: [self-hosted, ${{ github.event.inputs.tag }}]
+    runs-on: self-hosted ${{ github.event.inputs.tag }}
     if: |
       ${{ contains(github.event.label.name, 'e2e-test') ||
         github.event_name == 'workflow_dispatch' }}
