@@ -21,7 +21,7 @@ jobs:
   e2e-tests:
     runs-on: 
       group: self-hosted
-      labels: ${{ inputs.nic_series }}
+      labels: $NIC
     if: contains(github.event.label.name, 'e2e-test')
     steps:
       - uses: actions/checkout@v3
