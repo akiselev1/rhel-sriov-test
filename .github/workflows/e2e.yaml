@@ -4,12 +4,12 @@ on:
   pull_request:
     types: [labeled]
     inputs:
-      nic_series:
+      tag:
         description: 'NIC hardware'
         default: '810'
   workflow_dispatch:
     inputs:
-      nic_series:
+      tag:
         description: 'NIC hardware'
         required: true
         default: '810'
@@ -19,9 +19,7 @@ on:
         - 710
 jobs:
   e2e-tests:
-    runs-on: 
-      group: self-hosted
-      labels: 810
+    runs-on: ${{ github.event.inputs.tag }}
     if: |
       ${{ contains(github.event.label.name, 'e2e-test') ||
         github.event_name == 'workflow_dispatch' }}
