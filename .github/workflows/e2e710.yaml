@@ -5,8 +5,8 @@ on:
     types: [labeled]
   workflow_dispatch:
 jobs:
-  e2e-tests-710:
-    if: contains(github.event.label.name, 'e2e-test-710') || (github.event_name == 'workflow_dispatch')
+  710-test:
+    if: contains(github.event.label.name, '710') || (github.event_name == 'workflow_dispatch')
     runs-on: 710 
     steps:
       - uses: actions/checkout@v3
@@ -66,13 +66,13 @@ jobs:
       - name: Display Status
         run: echo "This job's status is ${{ job.status }}."
   remove-label:
-    needs: e2e-tests-710
+    needs: 710-test
     permissions:
       pull-requests: write
       issues: write
     runs-on: ubuntu-latest
-    if: always() && contains(github.event.label.name, 'e2e-test-710')
+    if: always() && contains(github.event.label.name, '710')
     steps:
       - name: remove label
         run: |
-          curl --silent -X DELETE -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ github.token }}' 'https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels/e2e-test-710'
+          curl --silent -X DELETE -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ github.token }}' 'https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels/710'
