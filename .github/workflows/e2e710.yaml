@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   e2e-tests-710:
-    if: |
-      ${{ (contains(github.event.label.name, '710')) ||
-        (github.event_name == 'workflow_dispatch') }}
+    if: contains(github.event.label.name, '710') || (github.event_name == 'workflow_dispatch')
     runs-on: 710 
     steps:
       - uses: actions/checkout@v3
@@ -73,7 +71,7 @@ jobs:
       pull-requests: write
       issues: write
     runs-on: ubuntu-latest
-    if: always() && contains(github.event.label.name, 'e2e-test-710')
+    if: always() && contains(github.event.label.name, '710')
     steps:
       - name: remove label
         run: |
