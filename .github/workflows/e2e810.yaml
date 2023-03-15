@@ -7,8 +7,8 @@ on:
 jobs:
   e2e-tests-810:
     if: |
-      ${{ github.event.label.name == 'e2e-test' ||
-        github.event_name == 'workflow_dispatch' }}
+      ${{ (github.event.label.name == 'e2e-test') ||
+        (github.event_name == 'workflow_dispatch') }}
     runs-on: 810
     steps:
       - uses: actions/checkout@v3
