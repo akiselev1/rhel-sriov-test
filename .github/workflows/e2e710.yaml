@@ -7,7 +7,7 @@ on:
 jobs:
   test710:
     if: contains(github.event.label.name, 'test710') || (github.event_name == 'workflow_dispatch')
-    runs-on: 710 
+    runs-on: [self-hosted, 710] 
     steps:
       - uses: actions/checkout@v3
         with:
