@@ -7,7 +7,7 @@ on:
 jobs:
   e2e-tests-710:
     if: |
-      ${{ (github.event.label.name == 'test-710') ||
+      ${{ (contains(github.event.label.name, '710')) ||
         (github.event_name == 'workflow_dispatch') }}
     runs-on: 710 
     steps:
