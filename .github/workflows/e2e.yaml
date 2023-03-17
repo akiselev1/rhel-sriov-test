@@ -23,10 +23,10 @@ jobs:
         id: step1
         run: |
           if [ ${{ github.event.label.name }} == 'e2e-test' ]; then
-            echo "::set-output name=label::810"
+            echo "::set-output name=label::'810'"
           fi
           if [ ${{ github.event.label.name }} == 'e2e-test-710' ]; then
-            echo "::set-output name=label::710"
+            echo "::set-output name=label::'710'"
           fi
           if [ -n ${{ github.event.inputs.tag }} ]; then
             echo "::set-output name=label::${{ github.event.inputs.tag }}"
