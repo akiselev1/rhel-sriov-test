@@ -4,10 +4,36 @@ on:
   pull_request:
     types: [labeled]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'NIC hardware'
+        required: true
+        default: '810'
+        type: choice
+        options:
+        - 810
+        - 710
 jobs:
+  prepare-label:
+    runs-on: ubuntu-latest
+    outputs:
+      label: ${{ steps.step1.outputs.label }}
+    steps:
+      - name: Check label
+        id: step1
+        run: |
+          if [ ${{ github.event.label.name }} == 'e2e-test' ]; then
+            echo "::set-output name=label::810"
+          fi
+          if [ ${{ github.event.label.name }} == 'e2e-test-710' ]; then
+            echo "::set-output name=label::710"
+          fi
+          if [ -n ${{ github.event.inputs.tag }} ]; then
+            echo "::set-output name=label::${{ github.event.inputs.tag }}"
+          fi
   e2e-tests:
-    if: contains(github.event.label.name, 'e2e-test') || (github.event_name == 'workflow_dispatch')
-    runs-on: [self-hosted, 810]
+    needs: [prepare-label]
+      runs-on: ${{ needs.prepare-label.outputs.label }}
     steps:
       - uses: actions/checkout@v3
         with:
