@@ -17,7 +17,7 @@ jobs:
   prepare-label:
     runs-on: ubuntu-latest
     outputs:
-      label: ${{ steps.step2.outputs.label }}
+      label: ${{ steps.step1.outputs.label }}
     steps:
       - name: Check label
         id: step1
@@ -27,10 +27,10 @@ jobs:
             echo "{label}={810}" >> $GITHUB_OUTPUT
           fi
           if [ ${{ github.event.label.name }} == 'e2e-test-710' ]; then
-            echo "::set-output name=label::710"
+            echo "{label}={710}" >> $GITHUB_OUTPUT
           fi
           if [ -n ${{ github.event.inputs.tag }} ]; then
-            echo "::set-output name=label::${{ github.event.inputs.tag }}"
+            echo "{label}=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
           fi
       - name: Debug label
         id: step2
