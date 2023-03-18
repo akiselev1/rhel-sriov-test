@@ -23,11 +23,11 @@ jobs:
         id: step1
         if: contains( github.event.pull_request.labels.*.name, 'e2e-test')
         run: echo "label=810" >> $GITHUB_OUTPUT
-      -name: Check label 710
+      - name: Check label 710
         id: step1
         if: contains( github.event.pull_request.labels.*.name, 'e2e-test-710')
         run: echo "label=710" >> $GITHUB_OUTPUT
-      -name: Check inputs
+      - name: Check inputs
         id: step1
         run: |
           if [ -n ${{ github.event.inputs.tag }} ]; then
