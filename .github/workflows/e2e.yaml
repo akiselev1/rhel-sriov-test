@@ -23,11 +23,11 @@ jobs:
         id: step1
         run: |
           echo github.event.label.name = ${{ github.event.label.name }}
-          if [ ${{ github.event.label.name }} == 'e2e-test' ]; then
+          if [ ${{ github.event.label.name }} == e2e-test ]; then
             echo "label=810" >> $GITHUB_OUTPUT
           fi
-          if [ ${{ github.event.label.name }} == 'e2e-test-710' ]; then
-            echo "{label}={710}" >> $GITHUB_OUTPUT
+          if [ ${{ github.event.label.name }} == e2e-test-710 ]; then
+            echo "label=710" >> $GITHUB_OUTPUT
           fi
           if [ -n ${{ github.event.inputs.tag }} ]; then
             echo "label=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
