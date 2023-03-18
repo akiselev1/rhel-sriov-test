@@ -2,7 +2,7 @@ name: sriov-e2e-test
 run-name: sriov-e2e-test initiated by ${{ github.actor }}
 on:
   pull_request:
-    types: [labeled]
+    types: [ labeled ]
   workflow_dispatch:
     inputs:
       tag:
@@ -21,12 +21,15 @@ jobs:
     steps:
       - name: Check label
         id: step1
+        if: ${{ github.event.label.name == 'e2e-test' }}
+        run: echo Hello, e2e-test!
         run: |
+          echo github.event.label.name = ${{ github.event.label.name }}
           if [ ${{ github.event.label.name }} == 'e2e-test' ]; then
-            echo "::set-output name=label::'810'"
+            echo "::set-output name=label::810"
           fi
           if [ ${{ github.event.label.name }} == 'e2e-test-710' ]; then
-            echo "::set-output name=label::'710'"
+            echo "::set-output name=label::710"
           fi
           if [ -n ${{ github.event.inputs.tag }} ]; then
             echo "::set-output name=label::${{ github.event.inputs.tag }}"
