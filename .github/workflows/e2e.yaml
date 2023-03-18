@@ -23,7 +23,7 @@ jobs:
         id: step1
         run: |
           echo github.event.label.name = ${{ github.event.label.name }}
-          if [ ${{ github.event.labels.name }} == e2e-test ]; then
+          if [ contains( github.event.pull_request.labels.*.name, 'e2e-test') ]; then
             echo "label=810" >> $GITHUB_OUTPUT
           fi
           if [ ${{ github.event.labels.name }} == e2e-test-710 ]; then
