@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Check label
         id: step1
-        if: ${{ github.event.label.name == 'e2e-test' }}
-        run: echo Hello, e2e-test!
         run: |
           echo github.event.label.name = ${{ github.event.label.name }}
           if [ ${{ github.event.label.name }} == 'e2e-test' ]; then
@@ -34,6 +32,10 @@ jobs:
           if [ -n ${{ github.event.inputs.tag }} ]; then
             echo "::set-output name=label::${{ github.event.inputs.tag }}"
           fi
+      - name: Debug label
+        id: step2
+        if: ${{ github.event.label.name == 'e2e-test' }}
+        run: echo Hello, e2e-test!
   e2e-tests:
     needs: [prepare-label]
     runs-on: ${{ needs.prepare-label.outputs.label }}
