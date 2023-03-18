@@ -17,7 +17,7 @@ jobs:
   prepare-label:
     runs-on: ubuntu-latest
     outputs:
-      label: ${{ steps.step1.outputs.label }}
+      label: ${{ steps.step2.outputs.label }}
     steps:
       - name: Check label
         id: step1
