@@ -20,7 +20,7 @@ jobs:
       label: ${{ steps.step1.outputs.label }}
     steps:
       - name: Check label
-	      id: step1
+        id: step1
         run: |
           echo github.event.label.name = ${{ github.event.label.name }}
           if [ ${{ github.event.label.name }} == 'e2e-test' ]; then
