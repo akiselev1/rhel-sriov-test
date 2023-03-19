@@ -29,9 +29,12 @@ jobs:
             echo "label=710" >> $GITHUB_OUTPUT
           elif [ -n ${{ github.event.inputs.tag }} ]; then
             echo "label=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "label=skip" >> $GITHUB_OUTPUT
           fi
   e2e-tests:
     needs: [ prepare-label ]
+    if: "!contains(needs.prepare-label.outputs.label, 'skip')"
     runs-on: ${{ needs.prepare-label.outputs.label }}
     steps:
       - uses: actions/checkout@v3
