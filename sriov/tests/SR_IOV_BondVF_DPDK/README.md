@@ -16,6 +16,7 @@ ip link set ${PF_2} vf 0 trust on
 ip link set ${PF_1} VF 1 mac ${PF_1_VF_1_MAC}
 ```
 
+
 * On DUT, get the PCI address for each VF. Compare the PCI address PF_1 VF 1 and PF_2 VF 0, if PF_1 VF 1 has a smaller PCI address, set IN_NUM=1; else set IN_NUM=2
 
 * On DUT, bind all VFs to vfio-pci
